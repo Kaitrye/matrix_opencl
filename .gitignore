@@ -1,0 +1,28 @@
+# C++ build artifacts
+/build/
+/bin/
+/obj/
+/out/
+/CMakeFiles/
+/CMakeCache.txt
+Makefile
+cmake_install.cmake
+
+# Visual Studio files
+*.sln
+*.vcxproj*
+*.user
+*.opensdf
+*.sdf
+*.ipch
+
+# VS Code settings
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Конфигурационные и временные файлы
+*.log
+*.tmp
