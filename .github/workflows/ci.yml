@@ -19,8 +19,8 @@ jobs:
           cmake \
           g++ \
           ocl-icd-opencl-dev \
-          clinfo \              # Для диагностики
-          pocl-opencl-icd       # CPU-реализация OpenCL
+          clinfo \
+          pocl-opencl-icd
 
     - name: Verify OpenCL installation
       run: |
