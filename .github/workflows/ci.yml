@@ -10,18 +10,29 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Install dependencies
       run: |
-        sudo apt update
-        sudo apt install -y cmake g++ opencl-headers pocl-opencl-icd
+        sudo apt-get update
+        sudo apt-get install -y \
+          cmake \
+          g++ \
+          ocl-icd-opencl-dev \
+          clinfo \              # Для диагностики
+          pocl-opencl-icd       # CPU-реализация OpenCL
+
+    - name: Verify OpenCL installation
+      run: |
+        clinfo | head -20 
 
     - name: Configure CMake
-      run: cmake -B build
+      run: cmake -B build -DCMAKE_BUILD_TYPE=Release
 
     - name: Build project
-      run: cmake --build build
+      run: cmake --build build --config Release --parallel $(nproc)
 
     - name: Run tests
-      run: cd build && ctest --output-on-failure
+      run: |
+        cd build
+        ctest --output-on-failure --parallel $(nproc)
