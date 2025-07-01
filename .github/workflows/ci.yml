@@ -27,9 +27,9 @@ jobs:
 
     - name: Build and install GoogleTest
       run: |
-        cmake -S /usr/src/gtest -B /usr/src/gtest/build -G Ninja
-        cmake --build /usr/src/gtest/build
-        sudo cp /usr/src/gtest/build/lib/*.a /usr/lib
+        cmake -S /usr/src/gtest -B build/gtest -G Ninja
+        cmake --build build/gtest
+        sudo cp build/gtest/lib/*.a /usr/lib
 
     - name: Verify OpenCL installation
       run: clinfo | head -20
