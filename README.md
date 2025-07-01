@@ -12,7 +12,7 @@
   - перегрузка операторов `<<`, `>>`, `*`, `*=`
   - умножение через OpenCL (`multiply_opencl`)
 - `matmul.cl` — OpenCL-ядро умножения матриц
-- `tests/test_matrix.cpp` — автотесты через `assert`
+- `tests/test_matrix.cpp` — автотесты с помощью gtest
 - `CMakeLists.txt` — сборочная система CMake
 - `.github/workflows/ci.yml` — CI на **GitHub Actions** с использованием **POCL**
 
