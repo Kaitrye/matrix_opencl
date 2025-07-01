@@ -17,3 +17,4 @@ add_executable(test_matrix tests/test_matrix.cpp src/matrix.cpp)
 target_link_libraries(test_matrix ${OpenCL_LIBRARIES})
 
 add_test(NAME MatrixTest COMMAND test_matrix)
+set_tests_properties(MatrixTest PROPERTIES WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
