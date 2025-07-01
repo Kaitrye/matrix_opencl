@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include "../matrix.h"
+#include "../src/matrix.h"
 
 void test_multiplication_small() {
     Matrix A(2, 3);
