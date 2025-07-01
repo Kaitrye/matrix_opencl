@@ -22,17 +22,37 @@ jobs:
           clinfo \
           pocl-opencl-icd \
           libgtest-dev \
-          ninja-build \
-          build-essential
+          clang-tidy \
+          cppcheck \
+          clang-format
 
     - name: Build and install GoogleTest
       run: |
-        cmake -S /usr/src/gtest -B build/gtest -G Ninja
+        cmake -S /usr/src/gtest -B build/gtest
         cmake --build build/gtest
         sudo cp build/gtest/lib/*.a /usr/lib
 
     - name: Verify OpenCL installation
       run: clinfo | head -20
+
+    - name: Check formatting with clang-format
+      run: |
+        echo "Checking formatting with .clang-format..."
+        FILES=$(find . -regex '.*\.\(cpp\|hpp\|h\|cxx\|cc\)')
+        clang-format --dry-run --Werror -style=file $FILES
+
+    - name: Run clang-tidy
+      run: |
+        echo "Running clang-tidy with .clang_tidy..."
+        cmake -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+        clang-tidy -p build $(find . -name '*.cpp')
+
+    - name: Run cppcheck
+      run: |
+        echo "Running cppcheck..."
+        cppcheck --enable=warning,performance,portability --inconclusive --std=c++17 \
+          --error-exitcode=1 \
+          --suppress=missingIncludeSystem .
 
     - name: Configure CMake
       run: cmake -B build -DCMAKE_BUILD_TYPE=Release
