@@ -16,7 +16,7 @@ include_directories(${OpenCL_INCLUDE_DIRS})
 # Тесты
 enable_testing()
 
-add_executable(test_matrix tests/test_matrix.cpp matrix.cpp)
+add_executable(test_matrix tests/test_matrix.cpp src/matrix.cpp)
 
 target_link_libraries(test_matrix
     ${OpenCL_LIBRARIES}
