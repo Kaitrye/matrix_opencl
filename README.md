@@ -50,7 +50,7 @@
    ```
 4. Внутри ядра каждая ячейка `C[i][j]` вычисляется параллельно по формуле:
 
-   ![formula](https://latex.codecogs.com/svg.image?\dpi{150}\bg_black%20{\color{white}C[i][j]=\sum_{k=0}^{K-1}A[i][k]\cdot%20B[k][j]})
+   ![formula](https://latex.codecogs.com/svg.image?\dpi{150}\colorbox{black}{\color{white}C[i][j]=\sum_{k=0}^{K-1}A[i][k]\cdot%20B[k][j]})
 
 5. Результат копируется обратно в объект Matrix.
 
