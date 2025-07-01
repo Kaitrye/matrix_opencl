@@ -70,7 +70,7 @@ void Matrix::multiply_opencl(const Matrix& other) {
     cl::Context context(device);
     cl::CommandQueue queue(context, device);
 
-    std::string kernel_code = loadKernel("matmul.cl");
+    std::string kernel_code = loadKernel("src/matmul.cl");
     cl::Program::Sources sources{{kernel_code.c_str(), kernel_code.length()}};
     cl::Program program(context, sources);
     program.build({device});
