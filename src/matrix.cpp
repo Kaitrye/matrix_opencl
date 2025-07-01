@@ -2,6 +2,7 @@
 #define CL_HPP_ENABLE_EXCEPTIONS
 
 #include "matrix.h"
+
 #include <CL/opencl.hpp>
 #include <fstream>
 #include <iomanip>
@@ -100,7 +101,6 @@ void Matrix::multiply_opencl(const Matrix &other) {
 }
 
 Matrix &Matrix::operator*=(const Matrix &other) {
-
   if (cols_ != other.rows_) {
     throw std::runtime_error("Matrix dimensions mismatch for multiplication");
   }
@@ -126,15 +126,13 @@ std::ostream &operator<<(std::ostream &out, const Matrix &M) {
   for (size_t i = 0; i < rows; ++i) {
     for (size_t j = 0; j < cols; ++j) {
       int len = std::to_string(M(i, j)).size();
-      if (lens[j] < len)
-        lens[j] = len;
+      if (lens[j] < len) lens[j] = len;
     }
   }
 
   for (size_t i = 0; i < rows; ++i) {
     for (size_t j = 0; j < cols; ++j) {
-      if (j != 0)
-        out << " ";
+      if (j != 0) out << " ";
       out << std::setw(lens[j]) << M(i, j);
     }
     out << std::endl;

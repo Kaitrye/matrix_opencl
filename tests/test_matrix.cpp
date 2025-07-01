@@ -1,7 +1,9 @@
-#include "../src/matrix.h"
+#include <gtest/gtest.h>
+
 #include <cstdlib>
 #include <ctime>
-#include <gtest/gtest.h>
+
+#include "../src/matrix.h"
 
 TEST(MatrixMultiplicationTest, SmallMatrix) {
   Matrix A(2, 3);
@@ -9,12 +11,10 @@ TEST(MatrixMultiplicationTest, SmallMatrix) {
 
   int value = 1;
   for (int i = 0; i < 2; ++i)
-    for (int j = 0; j < 3; ++j)
-      A(i, j) = value++;
+    for (int j = 0; j < 3; ++j) A(i, j) = value++;
 
   for (int i = 0; i < 3; ++i)
-    for (int j = 0; j < 2; ++j)
-      B(i, j) = value++;
+    for (int j = 0; j < 2; ++j) B(i, j) = value++;
 
   Matrix expected(2, 2);
   expected(0, 0) = 58;
@@ -28,8 +28,7 @@ TEST(MatrixMultiplicationTest, SmallMatrix) {
   ASSERT_EQ(C.cols(), 2);
 
   for (int i = 0; i < 2; ++i)
-    for (int j = 0; j < 2; ++j)
-      EXPECT_EQ(C(i, j), expected(i, j));
+    for (int j = 0; j < 2; ++j) EXPECT_EQ(C(i, j), expected(i, j));
 }
 
 TEST(MatrixMultiplicationTest, IdentityMatrix) {
@@ -40,17 +39,14 @@ TEST(MatrixMultiplicationTest, IdentityMatrix) {
   Matrix I(N, N);
 
   for (int i = 0; i < N; ++i)
-    for (int j = 0; j < N; ++j)
-      A(i, j) = rand();
+    for (int j = 0; j < N; ++j) A(i, j) = rand();
 
-  for (int i = 0; i < N; ++i)
-    I(i, i) = 1;
+  for (int i = 0; i < N; ++i) I(i, i) = 1;
 
   Matrix B = A * I;
 
   for (int i = 0; i < N; ++i)
-    for (int j = 0; j < N; ++j)
-      EXPECT_EQ(B(i, j), A(i, j));
+    for (int j = 0; j < N; ++j) EXPECT_EQ(B(i, j), A(i, j));
 }
 
 TEST(MatrixMultiplicationTest, DimensionMismatchThrows) {
@@ -80,6 +76,5 @@ TEST(MatrixMultiplicationTest, ZeroMatrixResult) {
   Matrix C = A * B;
 
   for (size_t i = 0; i < C.rows(); ++i)
-    for (size_t j = 0; j < C.cols(); ++j)
-      EXPECT_EQ(C(i, j), 0);
+    for (size_t j = 0; j < C.cols(); ++j) EXPECT_EQ(C(i, j), 0);
 }

@@ -13,7 +13,7 @@ class Matrix {
   static std::string loadKernel(const char *filename);
   void multiply_opencl(const Matrix &other);
 
-public:
+ public:
   Matrix(int rows = 1, int cols = 1);
 
   Matrix(const Matrix &);
@@ -38,4 +38,4 @@ Matrix operator*(const Matrix &, const Matrix &);
 std::ostream &operator<<(std::ostream &, const Matrix &);
 std::istream &operator>>(std::istream &, Matrix &);
 
-#endif // MATRIX_
+#endif  // MATRIX_
