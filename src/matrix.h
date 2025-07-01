@@ -1,4 +1,6 @@
 ﻿#include <vector>
+#include <iostream>
+#include <string>
 
 #ifndef MATRIX_
 #define MATRIX_
