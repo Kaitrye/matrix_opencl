@@ -20,11 +20,19 @@ jobs:
           g++ \
           ocl-icd-opencl-dev \
           clinfo \
-          pocl-opencl-icd
+          pocl-opencl-icd \
+          libgtest-dev \
+          ninja-build \
+          build-essential
+
+    - name: Build and install GoogleTest
+      run: |
+        cmake -S /usr/src/gtest -B /usr/src/gtest/build -G Ninja
+        cmake --build /usr/src/gtest/build
+        sudo cp /usr/src/gtest/build/lib/*.a /usr/lib
 
     - name: Verify OpenCL installation
-      run: |
-        clinfo | head -20 
+      run: clinfo | head -20
 
     - name: Configure CMake
       run: cmake -B build -DCMAKE_BUILD_TYPE=Release
